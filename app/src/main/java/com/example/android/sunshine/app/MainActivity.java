@@ -1,21 +1,9 @@
 package com.example.android.sunshine.app;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.Arrays.asList;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -23,10 +11,10 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_detail);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new ForecastFragment())
                     .commit();
         }
     }
@@ -43,53 +31,9 @@ public class MainActivity extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
 
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
-            List<String> weatherItems = asList(
-                    "Today - Sunny - 88 / 63",
-                    "Tuesday - Sunny - 88 / 63",
-                    "Wednesday - Sunny - 88 / 63",
-                    "Today - Sunny - 88 / 63",
-                    "Tuesday - Sunny - 88 / 63",
-                    "Wednesday - Sunny - 88 / 63",
-                    "Today - Sunny - 88 / 63",
-                    "Tuesday - Sunny - 88 / 63",
-                    "Wednesday - Sunny - 88 / 63",
-                    "Today - Sunny - 88 / 63",
-                    "Tuesday - Sunny - 88 / 63",
-                    "Wednesday - Sunny - 88 / 63",
-                    "Today - Sunny - 88 / 63",
-                    "Tuesday - Sunny - 88 / 63",
-                    "Wednesday - Sunny - 88 / 63",
-                    "Thursday - Sunny - 88 / 63"
-            );
-
-            ListView listView = (ListView)rootView.findViewById(R.id.listview_forecast);
-
-            listView.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.list_item_forecast, weatherItems));
-
-            return rootView;
-        }
-    }
 }
